@@ -1,0 +1,32 @@
+import React, { Component, Fragment } from 'react';
+import Table from 'react-bootstrap/Table';
+
+
+const Cart = () => {
+    return(
+        <Fragment>
+            <h2>Cart</h2>
+            <hr/>
+            <h3>Products</h3>
+            <Table striped bordered hover variant='dark'>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Product Name</td>
+                    <td>Quantity</td>
+                    <td>+</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+            </Table>
+        </Fragment>
+    )
+}
+
+
+export default Cart;
