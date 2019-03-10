@@ -37,7 +37,7 @@ router.post('/:orderId/lineItems', (req, res, next) => {
 
 // update line item
 router.put('/:orderId/lineItems/:lineItemId', (req, res, next) => {
-    LineItem.findById(req.params.lineItemId)
+    LineItem.findByPk(req.params.lineItemId)
         .then(lineItem => lineItem.update(req.body))
         .then(lineItem => res.send(lineItem))
         .catch(next)

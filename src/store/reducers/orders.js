@@ -7,8 +7,16 @@ const ordersReducer = (state = [], action) => {
     switch(action.type) {
         case LOAD_INITIAL_ORDERS:
             return action.orders;
+        case CREATE_LINE_ITEM:
+            let lineItems = [ ...cart.lineItems, action.lineItem ];
+            cart = { ...cart, lineItems };
+            return state.map(order => order.status !== 'CART' ? order : cart);
         case UPDATE_LINE_ITEM:
-            let lineItems = cart.lineItems.map(_lineItem => _lineItem !== action.lineItem.id ? _lineItem : action.lineItem);
+            lineItems = cart.lineItems.map(_lineItem => _lineItem.id !== action.lineItem.id ? _lineItem : action.lineItem);
+            cart = { ...cart, lineItems };
+            return state.map(order => order.status !== 'CART' ? order : cart);
+        case DELETE_LINE_ITEM:
+            lineItems = cart.lineItems.filter(_lineItems => _lineItems !== action.lineItem);
             cart = { ...cart, lineItems };
             return state.map(order => order.status !== 'CART' ? order : cart);
         default:
