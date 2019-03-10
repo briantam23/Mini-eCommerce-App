@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Table from 'react-bootstrap/Table';
 
 
-const Cart = () => {
+const Cart = ({ products }) => {
     return(
         <Fragment>
             <h2>Cart</h2>
@@ -17,17 +17,24 @@ const Cart = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Product Name</td>
-                        <td>Quantity</td>
-                        <td>+</td>
-                        <td>-</td>
-                    </tr>
+                {
+                    products.map(product => {
+                        return(
+                            <tr key={ product.id }>
+                                <td>{ product.name }</td>
+                                <td>Quantity</td>
+                                <td>+</td>
+                                <td>-</td>
+                            </tr>
+                        )
+                    })
+                }
                 </tbody>
             </Table>
         </Fragment>
     )
 }
 
+const mapStateToProps = ({ products }) => ({ products });
 
-export default Cart;
+export default connect(mapStateToProps)(Cart);
