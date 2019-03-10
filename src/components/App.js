@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { loadInitialProducts } from '../store/actions/products';
+import { loadInitialOrders } from '../store/actions/orders';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import NavBar from './NavBar';
 import Cart from './Cart';
@@ -11,8 +12,9 @@ class App extends Component {
     state = { loading: true };
 
     componentDidMount = () => {
-        const { loadInitialProducts } = this.props;
+        const { loadInitialProducts, loadInitialOrders } = this.props;
         loadInitialProducts()
+            .then(() => loadInitialOrders())
             .then(() => this.setState({ loading: false }))
     }
 
@@ -24,7 +26,7 @@ class App extends Component {
                 <Router>
                     <Fragment>
                         <NavBar/>
-                        <Route path='/cart' render={ () => <Cart/> }/>
+                        <Route path='/cart' render={ ({ history }) => <Cart history={ history }/> }/>
                     </Fragment>
                 </Router>
             </Fragment>
@@ -32,6 +34,6 @@ class App extends Component {
     }
 }
 
-const mapDispatchToProps = { loadInitialProducts };
+const mapDispatchToProps = { loadInitialProducts, loadInitialOrders };
 
 export default connect(null, mapDispatchToProps)(App);
