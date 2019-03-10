@@ -13,3 +13,7 @@ export const findPendingOrder = orders => (
 export const findLineItemById = (cart, product) => (
     cart.lineItems.find(lineItem => lineItem.productId === product.id)
 )
+
+export const findCartCount = cartOrder => (
+    cartOrder.lineItems.reduce((acc, cur) => acc += cur.quantity, 0)
+)

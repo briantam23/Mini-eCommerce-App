@@ -55,5 +55,13 @@ router.delete('/:orderId/lineItems/:lineItemId', (req, res, next) => {
         .catch(next)
 })
 
+// update order
+router.put('/:orderId', (req, res, next) => {
+    Order.findByPk(req.params.orderId)
+        .then(order => order.update(req.body))
+        .then(order => res.send(order))
+        .catch(next)
+})
+
 
 module.exports = router;

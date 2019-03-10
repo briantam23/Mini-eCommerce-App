@@ -54,3 +54,19 @@ export const deleteLineItem = (lineItem, orderId) => (
             .then(() => dispatch(_deleteLineItem(lineItem)))
     )
 )
+
+const _updateOrder = order => ({
+    type: UPDATE_ORDER,
+    order
+})
+export const updateOrder = (cart, history) => {
+    const newOrder = { ...cart, status: 'ORDER' };
+    return dispatch => (
+        axios.put(`/api/orders/${cart.id}`, newOrder)
+            .then(res => res.data)
+            .then(newOrders => {
+                history.push('/orders');
+                dispatch(_updateOrder(newOrders, cart.userId));
+            })
+    )
+}

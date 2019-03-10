@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { createLineItem, updateLineItem, deleteLineItem } from '../store/actions/orders';
-import { findPendingOrder, findLineItemById } from '../util';
+import { createLineItem, updateLineItem, deleteLineItem, updateOrder } from '../store/actions/orders';
+import { findPendingOrder, findLineItemById, findCartCount } from '../util';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
+import { UPDATE_ORDER } from '../store/constants';
 
 
-const Cart = ({ cart, products, createLineItem, updateLineItem, deleteLineItem }) => {
+const Cart = ({ cart, products, createLineItem, updateLineItem, deleteLineItem, updateOrder, history }) => {
     return(
         <Fragment>
             <h2>Cart</h2>
@@ -47,16 +48,24 @@ const Cart = ({ cart, products, createLineItem, updateLineItem, deleteLineItem }
                 }
                 </tbody>
             </Table>
+            <Button 
+                onClick={ () => updateOrder(cart, history) }
+                disabled={ findCartCount(cart) === 0 }
+                variant='primary'
+                block
+            >
+                Create Order
+            </Button>
         </Fragment>
     )
 }
 
-const mapStateToProps = ({ products, orders }) => { 
+const mapStateToProps = ({ products, orders }, { history }) => { 
     const cart = findPendingOrder(orders);
-    return { cart, products };
+    return { cart, products, history };
 };
 
-const mapDispatchToProps = ({ createLineItem, updateLineItem, deleteLineItem });
+const mapDispatchToProps = ({ createLineItem, updateLineItem, deleteLineItem, updateOrder });
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart);

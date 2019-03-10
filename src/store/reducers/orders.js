@@ -1,4 +1,4 @@
-import { LOAD_INITIAL_ORDERS, CREATE_LINE_ITEM, UPDATE_LINE_ITEM, DELETE_LINE_ITEM } from '../constants';
+import { LOAD_INITIAL_ORDERS, CREATE_LINE_ITEM, UPDATE_LINE_ITEM, DELETE_LINE_ITEM, UPDATE_ORDER } from '../constants';
 import Cart from '../../components/Cart';
 
 
@@ -19,6 +19,8 @@ const ordersReducer = (state = [], action) => {
             lineItems = cart.lineItems.filter(_lineItems => _lineItems !== action.lineItem);
             cart = { ...cart, lineItems };
             return state.map(order => order.status !== 'CART' ? order : cart);
+        case UPDATE_ORDER:
+            return state.filter(order => order.id === action.order.id); ///////
         default:
             return state;
     }
