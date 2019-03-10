@@ -4,7 +4,9 @@ import { loadInitialProducts } from '../store/actions/products';
 import { loadInitialOrders } from '../store/actions/orders';
 import { HashRouter as Router, Route } from 'react-router-dom';
 import NavBar from './NavBar';
+import Home from './Home';
 import Cart from './Cart';
+import Orders from './Orders';
 
 
 class App extends Component {
@@ -26,7 +28,9 @@ class App extends Component {
                 <Router>
                     <Fragment>
                         <NavBar/>
+                        <Route exact path='/' render={ () => <Home/> }/>
                         <Route path='/cart' render={ ({ history }) => <Cart history={ history }/> }/>
+                        <Route path='/orders' render={ () => <Orders/> }/>
                     </Fragment>
                 </Router>
             </Fragment>

@@ -10,11 +10,11 @@ const NavBar = () => {
     return(
         <Fragment>
             <Navbar bg="dark" variant="dark" expand="lg" style={{ marginBottom: '50px' }}>
-                <Navbar.Brand href="#home">Mini e-Commerce App</Navbar.Brand>
+                <Navbar.Brand href="#">Mini e-Commerce App</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="mr-auto">
-                    <Nav.Link href="#home">Home</Nav.Link>
+                    <Nav.Link href="#/">Home</Nav.Link>
                     <Nav.Link href="#cart">Cart</Nav.Link>
                     <Nav.Link href="#orders">Orders</Nav.Link>
                 </Nav>
