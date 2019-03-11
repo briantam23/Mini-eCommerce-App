@@ -20,7 +20,7 @@ const ordersReducer = (state = [], action) => {
             cart = { ...cart, lineItems };
             return state.map(order => order.status !== 'CART' ? order : cart);
         case UPDATE_ORDER:
-            return state.filter(order => order.id === action.order.id); ///////
+            return action.orders;
         default:
             return state;
     }
