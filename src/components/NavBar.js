@@ -12,17 +12,13 @@ const NavBar = () => {
             <Navbar bg="dark" variant="dark" expand="lg" style={{ marginBottom: '50px' }}>
                 <Navbar.Brand href="#">Mini e-Commerce App</Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
-                <Nav className="mr-auto">
-                    <Nav.Link href="#/">Home</Nav.Link>
-                    <Nav.Link href="#cart">Cart</Nav.Link>
-                    <Nav.Link href="#orders">Orders</Nav.Link>
-                </Nav>
-                <Form inline>
-                    <FormControl type="text" placeholder="Search Products" className="mr-sm-2" />
-                    <Button variant="outline-success">Search</Button>
-                </Form>
-            </Navbar.Collapse>
+                <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
+                    <Nav className="mr-auto">
+                        <Nav.Link href="#/">Home</Nav.Link>
+                        <Nav.Link href="#cart">Cart</Nav.Link>
+                        <Nav.Link href="#orders">Orders</Nav.Link>
+                    </Nav>
+                </Navbar.Collapse>
             </Navbar>
         </Fragment>
     )

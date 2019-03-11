@@ -34,6 +34,7 @@ const _updateLineItem = lineItem => ({
     lineItem
 })
 export const updateLineItem = (lineItem, orderId, _quantity, change) => {
+    change === 'increment' ? change = 1 : change = -1;
     lineItem = { ...lineItem, quantity: _quantity + change };
     return(
         dispatch => (

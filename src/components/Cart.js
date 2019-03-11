@@ -36,11 +36,11 @@ const Cart = ({ cart, products, createLineItem, updateLineItem, deleteLineItem, 
                             <tr key={ product.id }>
                                 <td>{ product.name }</td>
                                 <td>{ quantity }</td>
-                                <td onClick={ () => inCart ? updateLineItem(lineItem, orderId, quantity, 1) : createLineItem(product, orderId) }>
-                                    <Button>+</Button>
+                                <td onClick={ () => inCart ? updateLineItem(lineItem, orderId, quantity, 'increment') : createLineItem(product, orderId) }>
+                                    <Button variant='success'>+</Button>
                                 </td>
-                                <td onClick={ () => quantity > 1 ? updateLineItem(lineItem, orderId, quantity, -1) : deleteLineItem(lineItem, orderId) }>
-                                    <Button disabled={ quantity === 0 }>-</Button>
+                                <td onClick={ () => quantity > 1 ? updateLineItem(lineItem, orderId, quantity, 'decrement') : deleteLineItem(lineItem, orderId) }>
+                                    <Button disabled={ quantity === 0 } variant='danger'>-</Button>
                                 </td>
                             </tr>
                         )
@@ -53,6 +53,7 @@ const Cart = ({ cart, products, createLineItem, updateLineItem, deleteLineItem, 
                 disabled={ findCartCount(cart) === 0 }
                 variant='primary'
                 block
+                style={{ marginTop: '30px' }}
             >
                 Create Order
             </Button>
